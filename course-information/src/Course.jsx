@@ -6,11 +6,13 @@ import Total from './Total'
 const Course = ({ course }) => {
   return (
     <div>
-        <Header name={course.name} key={course.id} />
-        <Content parts={course.parts} key={course.id} />
+        <Header name={course.name} />
+        <Content parts={course.parts} />
         <Total parts={course.parts} />
     </div>
-  )
+        )
+
+    
 }
 
 export default Course
