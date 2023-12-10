@@ -1,14 +1,9 @@
 import React from 'react'
 
-const Total = ({exercises}) => {
-
-    let sum = 0;
-
-    sum = exercises.map((exercise) => {
-        sum += exercise
-    })
+const Total = ({parts}) => {
+  const totalExercises = parts.map(part => part.exercises).reduce((acc, curr) => acc + curr, 0);
   return (
-    <div>Number of exercises {sum}</div>
+    <div>Number of exercises {totalExercises}</div>
   )
 }
 
