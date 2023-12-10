@@ -18,6 +18,9 @@ const App = () => {
 
   const [scores, setScore] = useState(new Array(anecdotes.length).fill(0));
 
+  const [mostVoteIndex, setMostVoteIndex] = useState(0);
+  const [mostVoteCount, setMostVoteCount] = useState(0)
+
   const generateRandomNum = (max) => {
     return Math.floor(Math.random() * max);
   }
@@ -34,7 +37,15 @@ const App = () => {
     const newScore = [...scores];
     newScore[selected] += 1;
     setScore(newScore);
+    handleMostVote(newScore);
   }
+
+  const handleMostVote = (newScores) => {
+    const maxScore = Math.max(...newScores);
+    setMostVoteCount(maxScore);
+    const index = newScores.indexOf(maxScore);
+    setMostVoteIndex(index);
+  };
 
   return (
     <div>
@@ -45,7 +56,10 @@ const App = () => {
         <button onClick={handleScoreClick}>Vote</button>
         <button onClick={() => handleButtonClicked(anecdotes.length)}>next anecdote</button>
       </div>
-
+      <div>
+        <h2>Anecdote with most votes</h2>
+        {<p>{anecdotes[mostVoteIndex]}</p>}
+      </div>
     </div>
   )
 }
