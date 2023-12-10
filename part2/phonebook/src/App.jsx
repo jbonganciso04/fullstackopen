@@ -12,12 +12,17 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const newPerson = {
-      name: newName
+    const nameExists = persons.some(person => person.name.toLowerCase() === newName.toLowerCase());
+    if (nameExists) {
+      alert (`${newName} is already added to the phonebook`)
+    } else {
+      const newPerson = {
+        name: newName
+      }
+      setPersons((prevPersons) => [...prevPersons, newPerson]);
+
     }
     setNewName("");
-    setPersons((prevPersons) => [...prevPersons, newPerson]);
-
   }
 
   return (
